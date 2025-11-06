@@ -62,6 +62,10 @@ class BeforeMockTransformer extends WeavingTransformer
                         //TODO remove method_exists($method, 'getReturnType') when support for php5 is dropped
                         $beforeDefinition = str_replace('return $__am_res;', 'return;', $beforeDefinition);
                     }
+                    if ($method->getReturnType() == 'never') {
+                        // Replace return with a NOOP since the method cannot return
+                        $beforeDefinition = str_replace(' return $__am_res;', ';', $beforeDefinition);
+                    }
 
                     $reflectedParams = $method->getParameters();
 
