@@ -58,8 +58,7 @@ class BeforeMockTransformer extends WeavingTransformer
                     if ($method->isGenerator()) {
                         $beforeDefinition = str_replace('return', 'yield', $beforeDefinition);
                     }
-                    if (method_exists($method, 'getReturnType') && $method->getReturnType() == 'void') {
-                        //TODO remove method_exists($method, 'getReturnType') when support for php5 is dropped
+                    if ($method->getReturnType() == 'void') {
                         $beforeDefinition = str_replace('return $__am_res;', 'return;', $beforeDefinition);
                     }
                     if ($method->getReturnType() == 'never') {
