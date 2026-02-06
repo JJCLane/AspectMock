@@ -10,7 +10,7 @@ final class ArgumentsFormatter
 {
     public static function toString($args): string
     {
-        return implode(',',array_map('self::format', $args));
+        return implode(',',array_map([self::class, 'format'], $args));
     }
 
     protected static function format($arg)
