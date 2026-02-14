@@ -278,9 +278,9 @@ Clear the test doubles registry between tests.
 
 use AspectMock\Test as test;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+class UserTest extends \PHPUnit\Framework\TestCase
 {
-    protected function tearDown()
+    protected function tearDown(): void
     {
         test::clean(); // remove all registered test doubles
     }
